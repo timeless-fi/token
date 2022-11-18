@@ -36,9 +36,14 @@ contract TimelessToken is ERC20, Owned, IERC20Mintable {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(string memory name_, string memory symbol_, address owner_) ERC20(name_, symbol_, 18) Owned(owner_) {
+    constructor(string memory name_, string memory symbol_, address owner_, address minter_)
+        ERC20(name_, symbol_, 18)
+        Owned(owner_)
+    {
         // mint the initial token supply to the owner
         _mint(owner_, INITIAL_SUPPLY);
+
+        minter = minter_;
     }
 
     /// -----------------------------------------------------------------------

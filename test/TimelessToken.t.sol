@@ -20,11 +20,7 @@ contract TimelessTokenTest is Test {
         minter = makeAddr("minter");
 
         // deploy contracts
-        token = new TimelessToken("Timeless Influence Token", "TIT", owner);
-
-        // set up contracts
-        vm.prank(owner);
-        token.setMinter(minter);
+        token = new TimelessToken("Timeless Influence Token", "TIT", owner, minter);
     }
 
     function test_initialSupply() public {
