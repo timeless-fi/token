@@ -4,7 +4,9 @@ pragma solidity ^0.8.13;
 import {CREATE3Script} from "./base/CREATE3Script.sol";
 import {TimelessToken} from "../src/TimelessToken.sol";
 
-contract DeployScript is CREATE3Script("1.0.0") {
+contract DeployScript is CREATE3Script {
+    constructor() CREATE3Script(vm.envString("VERSION")) {}
+
     function run() external returns (TimelessToken timelessToken) {
         uint256 deployerPrivateKey = uint256(vm.envBytes32("PRIVATE_KEY"));
 
