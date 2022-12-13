@@ -27,6 +27,15 @@ contract TimelessTokenTest is Test {
         assertEqDecimal(token.balanceOf(owner), INITIAL_SUPPLY, 18, "owner doesn't have the initial supply");
     }
 
+    function test_transfer() public {
+        // mint as the minter
+        vm.prank(minter);
+        token.mint(address(this), 1e18);
+
+        // transfer
+        token.transfer(address(0x69), 1e18);
+    }
+
     function test_onlyMinterCanMint(uint256 amount, address hacker) public {
         vm.assume(hacker != minter);
         amount = bound(amount, 0, MAX_SUPPLY - INITIAL_SUPPLY);
